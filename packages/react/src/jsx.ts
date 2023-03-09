@@ -1,19 +1,14 @@
-
-import { REACT_ELEMENT_TYPE } from "../../shared/ReactSymbols";
-import { ElementType, Key, Props, ReactElementType, Ref } from "../../shared/ReactTypes";
-
-
+import { REACT_ELEMENT_TYPE } from 'shared/ReactSymbols'
+import type { ElementType, Key, Props, ReactElementType, Ref } from 'shared/ReactTypes'
 
 /**
  * React Element 构造函数
  */
-
-
 function ReactElement(
   type: ElementType,
   key: Key,
   ref: Ref,
-  props: Props
+  props: Props,
 ) {
   const element: ReactElementType = {
     $$typeof: REACT_ELEMENT_TYPE,
@@ -21,7 +16,7 @@ function ReactElement(
     key,
     ref,
     props,
-    __mark: 'troy'
+    __mark: 'hyoban',
   }
   return element
 }
@@ -34,13 +29,16 @@ export function isValidElement(object: any) {
   )
 }
 
-
 export function jsx(
   type: ElementType,
   config: any,
   ...maybeChildren: any
 ) {
+  // NOTE: 此处的 jsx 方法统一了 React.createElement 的处理
+  // 实际情况下，两者的实现不相同
+
   const props: Props = {}
+
   let key: Key = null
   let ref: Ref = null
   for (const propName in config) {
@@ -59,9 +57,10 @@ export function jsx(
       props[propName] = val
     }
   }
-  const maybeChildrenLen = maybeChildren.length
-  if (maybeChildrenLen) {
-    if (maybeChildrenLen === 1) {
+
+  const maybeChildrenLength = maybeChildren.length
+  if (maybeChildrenLength) {
+    if (maybeChildrenLength === 1) {
       props.children = maybeChildren[0]
     } else {
       props.children = maybeChildren
@@ -69,7 +68,6 @@ export function jsx(
   }
   return ReactElement(type, key, ref, props)
 }
-
 
 export function jsxDEV(
   type: ElementType,
