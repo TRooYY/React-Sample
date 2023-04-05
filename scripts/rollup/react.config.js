@@ -1,11 +1,11 @@
-import generatePackageJson from "rollup-plugin-generate-package-json";
-import { getBaseRollupPlugins, getPackageJSON, resolvePkgPath } from "./utils";
+import generatePackageJson from "rollup-plugin-generate-package-json"
+import { getBaseRollupPlugins, getPackageJSON, resolvePkgPath } from "./utils"
 
-const { name, module } = getPackageJSON("react");
+const { name, module } = getPackageJSON("react")
 // react包的路径
-const pkgPath = resolvePkgPath(name);
+const pkgPath = resolvePkgPath(name)
 // react产物路径
-const pkgDistPath = resolvePkgPath(name, true);
+const pkgDistPath = resolvePkgPath(name, true)
 
 export default [
   // React
@@ -54,4 +54,4 @@ export default [
     ],
     plugins: getBaseRollupPlugins(),
   },
-];
+]
